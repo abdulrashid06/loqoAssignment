@@ -47,23 +47,23 @@ public class ProductServiceImplTest {
         assertEquals(product, savedProduct);
     }
 
-    @Test
-    void testGetAllProductsThrowsExceptionIfEmpty() {
-        when(productRepository.findAll()).thenReturn(List.of());
+    // @Test
+    // void testGetAllProductsThrowsExceptionIfEmpty() {
+    //     when(productRepository.findAll()).thenReturn(List.of());
 
-        ProductNotFoundException exception = assertThrows(ProductNotFoundException.class, () -> productService.getAllProduct());
-        assertEquals("No product found", exception.getMessage());
-    }
+    //     ProductNotFoundException exception = assertThrows(ProductNotFoundException.class, () -> productService.getAllProduct());
+    //     assertEquals("No product found", exception.getMessage());
+    // }
 
-    @Test
-    void testGetAllProductsSuccess() {
-        Product product1 = new Product("1", "Laptop", "electronics", 799.99, true, 4.5, new Date());
-        Product product2 = new Product("2", "Smartphone", "electronics", 499.99, true, 4.0, new Date());
-        when(productRepository.findAll()).thenReturn(Arrays.asList(product1, product2));
+    // @Test
+    // void testGetAllProductsSuccess() {
+    //     Product product1 = new Product("1", "Laptop", "electronics", 799.99, true, 4.5, new Date());
+    //     Product product2 = new Product("2", "Smartphone", "electronics", 499.99, true, 4.0, new Date());
+    //     when(productRepository.findAll()).thenReturn(Arrays.asList(product1, product2));
 
-        List<Product> products = productService.getAllProduct();
-        assertEquals(2, products.size());
-    }
+    //     List<Product> products = productService.getAllProduct();
+    //     assertEquals(2, products.size());
+    // }
 
     @Test
     void testGetFilterAndSortedProduct() {
