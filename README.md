@@ -1,6 +1,6 @@
-# Product Management API
 
-The **Product Management API** is a Spring Boot application designed for managing product details. It offers RESTful endpoints for CRUD operations, filtering, sorting, and bulk uploading products. The application leverages MongoDB as the database and includes robust features such as validation, sorting, and custom exception handling.
+
+The API provides a robust solution for managing products, with features like filtering and sorting to tailor the product data to specific needs. The combination of Spring Boot and MongoDB ensures a scalable and efficient system. Explore the source code and contribute to the project to enhance its capabilities.
 
 ## Features
 
