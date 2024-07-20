@@ -1,4 +1,4 @@
-
+#loqoAssignment
 
 The API provides a robust solution for managing products, with features like filtering and sorting to tailor the product data to specific needs. The combination of Spring Boot and MongoDB ensures a scalable and efficient system. Explore the source code and contribute to the project to enhance its capabilities.
 
