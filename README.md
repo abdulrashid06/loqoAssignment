@@ -30,7 +30,7 @@ The MongoDB collection named `products` should have the following structure:
   "rating": "double",
   "createdAt": "Date"
 }
-
+```
 
 ## Prerequisites
 
@@ -42,7 +42,7 @@ The MongoDB collection named `products` should have the following structure:
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/yourusername/ProductManagement.git
+   git clone https://github.com/yourusername/loqoAssignment.git
 
    
 2. **Setup the Database**
