@@ -32,12 +32,12 @@ The MongoDB collection named `products` should have the following structure:
 }
 
 
-### Prerequisites
+## Prerequisites
 
 - **Java 17**: Ensure you have JDK 17 installed.
 - **Maven**: For building and running the application.
 
-### Setup
+## Setup
 
 1. **Clone the Repository**
 
