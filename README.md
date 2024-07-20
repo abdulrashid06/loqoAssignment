@@ -1,6 +1,6 @@
 # Product Management API
 
-The **Product Management API** is a Spring Boot application designed to manage product details. It provides RESTful endpoints for CRUD operations, filtering, sorting, and bulk uploading products. The application uses MySQL as the database and includes features such as validation, sorting, and custom exception handling.
+The **Product Management API** is a Spring Boot application designed for managing product details. It offers RESTful endpoints for CRUD operations, filtering, sorting, and bulk uploading products. The application leverages MongoDB as the database and includes robust features such as validation, sorting, and custom exception handling.
 
 ## Features
 
@@ -9,26 +9,28 @@ The **Product Management API** is a Spring Boot application designed to manage p
 - **Exception Handling**: Global exception handling with custom error messages.
 
 ## Technologies Used
+
 - **Spring Boot**: Framework for building the application.
-- **Spring Data MongoDB**: For ORM and database interactions.
-- **MongodDB**: Database for storing product information.
-- **Lombok**: Reduces boilerplate code for data models
+- **Spring Data MongoDB**: ORM for MongoDB interactions.
+- **MongoDB**: Database for storing product information.
+- **Lombok**: Reduces boilerplate code for data models.
 - **JUnit & Mockito**: For unit testing the application.
 
-**MongoDB Collection**
-   Assume you have a MongoDB collection named `products` with the following structure:
-   ```json
-   {
-     "_id": "ObjectId",
-     "name": "string",
-     "category": "string",
-     "price": "double",
-     "inStock": "boolean",
-     "rating": "double",
-     "createdAt": "Date"
-   }
+## MongoDB Collection
 
-## Getting Started
+The MongoDB collection named `products` should have the following structure:
+
+```json
+{
+  "_id": "ObjectId",
+  "name": "string",
+  "category": "string",
+  "price": "double",
+  "inStock": "boolean",
+  "rating": "double",
+  "createdAt": "Date"
+}
+
 
 ### Prerequisites
 
