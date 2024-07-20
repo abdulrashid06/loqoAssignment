@@ -6,18 +6,27 @@ The **Product Management API** is a Spring Boot application designed to manage p
 
 - **Product Management**: Add, retrieve, and manage product details.
 - **Filtering and Sorting**: Filter products by category, price range, and stock availability, and sort them by various fields.
-- **Bulk Upload**: Upload multiple products at once with error handling for duplicates.
-- **Validation**: Input validation using JSR-380 annotations.
 - **Exception Handling**: Global exception handling with custom error messages.
-- **Documentation**: API documentation using Springdoc OpenAPI.
 
 ## Technologies Used
 - **Spring Boot**: Framework for building the application.
-- **Spring Data JPA**: For ORM and database interactions.
-- **MySQL**: Database for storing product information.
-- **Lombok**: Reduces boilerplate code for data models.
-- **Swagger OpenAPI**: For UI Experience
+- **Spring Data MongoDB**: For ORM and database interactions.
+- **MongodDB**: Database for storing product information.
+- **Lombok**: Reduces boilerplate code for data models
 - **JUnit & Mockito**: For unit testing the application.
+
+**MongoDB Collection**
+   Assume you have a MongoDB collection named `products` with the following structure:
+   ```json
+   {
+     "_id": "ObjectId",
+     "name": "string",
+     "category": "string",
+     "price": "double",
+     "inStock": "boolean",
+     "rating": "double",
+     "createdAt": "Date"
+   }
 
 ## Getting Started
 
@@ -25,7 +34,6 @@ The **Product Management API** is a Spring Boot application designed to manage p
 
 - **Java 17**: Ensure you have JDK 17 installed.
 - **Maven**: For building and running the application.
-- **MySQL**: A MySQL server for database operations.
 
 ### Setup
 
@@ -37,57 +45,40 @@ The **Product Management API** is a Spring Boot application designed to manage p
    
 2. **Setup the Database**
 
-   - Ensure that MySQL is installed and running. Create a database named product_management.
+   - Ensure that MongoDB is installed and running. Create a database named products.
 
    
-3. **Build and Run the Application**
 
-   ```bash
-   ./mvnw clean install
-   ./mvnw spring-boot:run
-
-4. **API Endpoints**
-      - POST /products
+3. **API Endpoints**
+      - POST /add
       - Add a new product.
       - Request Body:
         
       ```bash
          {
-           "name": "Product Name",
-           "category": "Category",
-           "price": 99.99,
-           "inStock": true,
-           "rating": 4.5,
-           "createdAt": "2024-07-20T00:00:00Z"
-         }
+        "name": "pen",
+        "category": "stationary",
+        "price": 10.0,
+        "inStock": true,
+        "rating": 3.0,
+        "createdAt": "2023-07-20T03:00:00.000+00:00"
+    }
       ```
-      - POST /products/bulk-upload
-      - Bulk upload multiple products.
-      - Request Body:
-        
-      ```bash
-         [
-           {
-             "name": "Product1",
-             "category": "Category1",
-             "price": 100.00,
-             "inStock": true,
-             "rating": 4.0,
-             "createdAt": "2024-07-20T00:00:00Z"
-           },
-           ...
-         ]
-      ```
+     
       - Response:
          ```bash
             {
-              "savedProducts": [ ... ],
-              "existingProducts": [ ... ]
-            }
-   
+        "id": "669b83d206ec12145999ca34",
+        "name": "pen",
+        "category": "stationary",
+        "price": 10.0,
+        "inStock": true,
+        "rating": 3.0,
+        "createdAt": "2023-07-20T03:00:00.000+00:00"
+    }
          ```
       - GET /products
-      - Retrieve products with optional filters.
+      - Retrieve all the products.
       - Query Parameters:
         
          - category (optional)
@@ -101,19 +92,20 @@ The **Product Management API** is a Spring Boot application designed to manage p
       ```bash
             [
               {
-                "id": 1,
-                "name": "Product Name",
-                "category": "Category",
-                "price": 99.99,
+                "id": "669b83d206ec12145999ca34",
+                "name": "pen",
+                "category": "stationary",
+                "price": 10.0,
                 "inStock": true,
-                "rating": 4.5,
-                "createdAt": "2024-07-20T00:00:00Z"
+                "rating": 3.0,
+                "createdAt": "2023-07-20T03:00:00.000+00:00"
               },
               ...
             ]
       ```
-      - GET /products/category
-      - Retrieve products by category.
+      - GET /products?category=electronics&minPrice=100&maxPrice=1000&inStock=true&sortField=price&sortOrder=asc
+
+      - Retrieve all the products according to filter and sorting.
       - Query Parameters:
         
          - category (required)
@@ -122,60 +114,18 @@ The **Product Management API** is a Spring Boot application designed to manage p
       ```bash
             [
               {
-                "id": 1,
-                "name": "Product Name",
-                "category": "Category",
-                "price": 99.99,
+                "id": "669b83d206ec12145999ca34",
+                "name": "pen",
+                "category": "stationary",
+                "price": 10.0,
                 "inStock": true,
-                "rating": 4.5,
-                "createdAt": "2024-07-20T00:00:00Z"
+                "rating": 3.0,
+                "createdAt": "2023-07-20T03:00:00.000+00:00"
               },
               ...
             ]
       ```
-      - GET /products/price-range
-      - Retrieve products within a price range.
-      - Query Parameters:
-        
-         - minPrice (required)
-         - maxPrice (required)
-
-        Response:
-      ```bash
-            [
-              {
-                "id": 1,
-                "name": "Product Name",
-                "category": "Category",
-                "price": 99.99,
-                "inStock": true,
-                "rating": 4.5,
-                "createdAt": "2024-07-20T00:00:00Z"
-              },
-              ...
-            ]
-      ```
-      - GET /products/in-stock
-      - Retrieve products based on stock availability.
-      - Query Parameters:
-        
-         - inStock (required)
-
-        Response:
-      ```bash
-            [
-              {
-                "id": 1,
-                "name": "Product Name",
-                "category": "Category",
-                "price": 99.99,
-                "inStock": true,
-                "rating": 4.5,
-                "createdAt": "2024-07-20T00:00:00Z"
-              },
-              ...
-            ]
-      ```
+     
 1. **Run the Tests**
 
    ```bash
